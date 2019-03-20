@@ -1,11 +1,10 @@
 {
-  "name": "root",
-  "private": true,
   "devDependencies": {
     "lerna": "^3.13.0"
   },
   "npmClient": "yarn",
-  "useWorkspaces": true,
+  "useWorkspaces": false,
+  "version": "0.0.1",
   "workspaces": [
     "packages/*"
   ]

@@ -32,5 +32,6 @@
     "gulp-sass": "^4.0.2",
     "node-sass": "^4.11.0",
     "stylelint": "^9.10.1"
-  }
+  },
+  "gitHead": "e0e697adcada86e790e00f24507005348f9e6d8b"
 }
