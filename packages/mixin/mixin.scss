@@ -1,0 +1,171 @@
+// Mixin helping to truncate and add ellipsis to a string too long for it to fit
+// @author Evergreen Wang
+//
+// @access public
+//
+// @param {Number} $lines - Number of truncated lines
+// @param {Length} $lineHeight - Lineheight
+//
+// @example scss - Usage
+//  .ellipsis {
+//     @include ellispis
+//  }
+//
+//  .ellipsis-3 {
+//     @include ellispis(3)
+//  }
+//
+@mixin ellipsis($lines: 1, $lineHeight: 1em) {
+  display: -webkit-box;
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+  word-break: break-word;
+
+  @if $lines == 1 {
+    white-space: nowrap;
+  } @else {
+    line-height: $lineHeight;
+
+    max-height: $lineHeight * $lines;
+
+    /* stylelint-disable-next-line */
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $lines;
+  }
+}
+
+// Default hairline mixing
+// @author Evergreen Wang
+//
+// @access private
+//
+// @param {String} $position - Position the line to add
+// @param {Color} $color - Line color
+// @example
+// .foo {
+//   @include hairline-common(top)
+// }
+@mixin hairline-common($position, $color) {
+  position: absolute;
+
+  content: '';
+
+  background-color: $color;
+  @if $position == top or $position == bottom {
+    @media (min-resolution: 2dppx) {
+      transform: scaleY(0.5);
+    }
+    @media (min-resolution: 3dppx) {
+      transform: scaleY(0.33);
+    }
+  } @else if $position == left or $position == right {
+    @media (min-resolution: 2dppx) {
+      transform: scaleX(0.5);
+    }
+    @media (min-resolution: 3dppx) {
+      transform: scaleX(0.33);
+    }
+  }
+}
+
+// Hairline mixin helper
+//
+// @author Evergreen Wang
+//
+// @access public
+//
+// @param {String} $position - Position the line to add
+// @param {Color} $color - Line color
+// @param {Length} $size - Line size
+//
+// @example
+// .foo {
+//   @inlcude hairline(right)
+// }
+//
+// .foo2 {
+//   @inlcude hairline(left, #ddd)
+// }
+//
+// .foo3 {
+//   @inlcude hairline(bottom, #ddd, 3px)
+// }
+//
+@mixin hairline($position, $color: currentColor, $size: 1px) {
+  position: relative;
+
+  &::after {
+    @include hairline-common($position, $color);
+
+    @if $position == top {
+      top: 0;
+      right: auto;
+      bottom: auto;
+      left: 0;
+
+      width: 100%;
+      height: $size;
+
+      transform-origin: 50% 0;
+    } @else if $position == bottom {
+      top: auto;
+      right: auto;
+      bottom: 0;
+      left: 0;
+
+      width: 100%;
+      height: $size;
+
+      transform-origin: 50% 100%;
+    } @else if $position == left {
+      top: 0;
+      right: auto;
+      bottom: auto;
+      left: 0;
+
+      width: $size;
+      height: 100%;
+
+      transform-origin: 0 50%;
+    } @else if $position == right {
+      top: 0;
+      right: 0;
+      bottom: auto;
+      left: auto;
+
+      width: $size;
+      height: 100%;
+
+      transform-origin: 100% 50%;
+    }
+  }
+}
+
+.ellipsis {
+  @include ellipsis;
+}
+
+.ellipsis--2 {
+  @include ellipsis(2);
+}
+
+.ellipsis--3 {
+  @include ellipsis(3);
+}
+
+.hairline-right {
+  @include hairline(right);
+}
+
+.hairline-left {
+  @include hairline(left);
+}
+
+.hairline-bottom {
+  @include hairline(bottom);
+}
+
+.hairline-top {
+  @include hairline(top);
+}

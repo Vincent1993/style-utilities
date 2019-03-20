@@ -1,0 +1,36 @@
+{
+  "name": "@toojs/style-utility-mixin",
+  "version": "0.0.1",
+  "description": "scss mixin helper",
+  "keywords": [
+    "scss"
+  ],
+  "author": "Evergreen Wang <vincentwang.720@gmail.com>",
+  "homepage": "",
+  "license": "MIT",
+  "main": "lib/mixin.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "mixin.css",
+    "mixin.scss",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "gulp compile --gulpfile build.js"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@toojs/stylelint-config-standard": "^1.0.0",
+    "gulp": "^4.0.0",
+    "gulp-autoprefixer": "^6.0.0",
+    "gulp-clean": "^0.4.0",
+    "gulp-cssnano": "^2.1.3",
+    "gulp-sass": "^4.0.2",
+    "node-sass": "^4.11.0",
+    "stylelint": "^9.10.1"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  extends: '@toojs/stylelint-config-standard',
+  rules: {
+    'order/properties-alphabetical-order': null
+  }
+}
